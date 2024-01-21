@@ -1,6 +1,6 @@
 // App.js
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import Testimonials from './pages/Testimonials';
@@ -10,10 +10,27 @@ import Photos from './pages/Photos';
 import './App.css';
 
 const App = () => {
+  const [showNavBar, setShowNavBar] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setShowNavBar(scrollY === 0); // Show navBar only when at the top of the page
+    };
+
+    // Attach scroll event listener
+    window.addEventListener('scroll', handleScroll);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <Router>
       <div>
-        <nav class="navBar">
+        <nav className={`navBar ${showNavBar ? 'show' : ''}`}>
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/Photos">Photos</Link></li>
