@@ -32,6 +32,7 @@ const App = () => {
       <div>
         <nav className={`navBar ${showNavBar ? 'show' : ''}`}>
           <ul>
+           <li><a href="tel:503-464-6808">503-464-6808</a></li>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/Photos">Photos</Link></li>
             <li><Link to="/contact">Contact</Link></li>
